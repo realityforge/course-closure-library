@@ -1,0 +1,11 @@
+{
+  "name": "passgen",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "depswriter": "./node_modules/google-closure-library/closure/bin/build/depswriter.py --root_with_prefix=\"src/js/passgen ../../../../src/js/passgen\" >src/js/passgen/deps.js"
+  },
+  "dependencies": {
+    "google-closure-library": "20170806.0.0"
+  }
+}
