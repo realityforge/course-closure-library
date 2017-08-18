@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Hello World</title>
+  <link type="text/css" rel="stylesheet" href="assets/css/passgen.css"></link>
+  <script src="../node_modules/google-closure-library/closure/goog/base.js"></script>
+  <script src="../src/js/passgen/deps.js"></script>
+  <script src="../src/js/passgen/passgen.js"></script>
+</head>
+<body>
+<h2 class="header">Password Generator</h2>
+<div id="passgen" class="passgen">
+  <div class="password">&nbsp;</div>
+  <button class="generate" type="button">Generate Password</button>
+</div>
+<script>rf.passgen.init('#passgen');</script>
+</body>
+</html>
