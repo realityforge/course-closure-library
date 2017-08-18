@@ -8,3 +8,7 @@ Each subdirectory contains a separate project. For each subdirectory follow the 
 
     $ yarn install
     $ yarn start
+
+## hello-world
+
+Ensure you run `yarn depswriter` everytime a potential import/export has changed.
