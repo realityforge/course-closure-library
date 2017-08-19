@@ -1,6 +1,8 @@
 goog.provide('rf.weather');
 
-goog.require('goog.dom');
+goog.require('rf.weather.model.WeatherModel');
+goog.require('rf.weather.view.WeatherView');
+goog.require('rf.weather.presenter.WeatherPresenter');
 
 /**
  * Replace the element specified by selector with the weather application.
