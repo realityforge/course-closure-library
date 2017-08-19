@@ -77,5 +77,5 @@ rf.passgen.view.PassgenView.prototype.exitDocument = function() {
 
 /** @private */
 rf.passgen.view.PassgenView.prototype.handleGenerate_ = function() {
-  this.passwordDiv_.getElement().innerHTML = new rf.passgen.model.PassgenModel().randomString(8);
+  this.passwordDiv_.getElement().innerHTML = rf.passgen.model.PassgenModel.getInstance().randomString(8);
 };

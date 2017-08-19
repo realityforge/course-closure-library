@@ -6,6 +6,9 @@ goog.provide('rf.passgen.model.PassgenModel');
  */
 rf.passgen.model.PassgenModel = function() {};
 
+// This generates an accessor that returns a singleton instance for the model
+goog.addSingletonGetter(rf.passgen.model.PassgenModel);
+
 /**
  * @public
  * @param {Number} length
