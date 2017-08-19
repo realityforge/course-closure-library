@@ -3,9 +3,14 @@
   "version": "1.0.0",
   "license": "MIT",
   "scripts": {
+    "cc-simple": "node ./scripts/cc-simple.js src/js/greeter greeter.js public/assets/js greeter.js",
     "depswriter": "node ./scripts/depsgen.js greeter"
   },
   "dependencies": {
     "google-closure-library": "20170806.0.0"
+  },
+  "devDependencies": {
+    "google-closure-compiler": "20170806.0.0",
+    "mkdirp": "0.5.1"
   }
 }
