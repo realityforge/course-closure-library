@@ -3,6 +3,7 @@ goog.provide('rf.passgen.view.PassgenView');
 goog.require('goog.ui.Component');
 goog.require('goog.ui.Control');
 goog.require('goog.events');
+goog.require('rf.passgen.model.PassgenModel');
 
 /**
  * @constructor
@@ -76,20 +77,5 @@ rf.passgen.view.PassgenView.prototype.exitDocument = function() {
 
 /** @private */
 rf.passgen.view.PassgenView.prototype.handleGenerate_ = function() {
-  this.passwordDiv_.getElement().innerHTML = this.randomString_(8);
+  this.passwordDiv_.getElement().innerHTML = new rf.passgen.model.PassgenModel().randomString(8);
 };
-
-/**
- * @private
- * @param {Number} length
- * @return {String}
- */
-rf.passgen.view.PassgenView.prototype.randomString_ = function(length) {
-  var chars = '0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz';
-  var result = '';
-  for (var i = 0; i < length; i++) {
-    result += chars[Math.floor(Math.random() * (chars.length - 1))];
-  }
-  return result;
-};
-
