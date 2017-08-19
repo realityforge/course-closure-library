@@ -16,3 +16,6 @@ rf.greeter.greet = function(id) {
     console.log('Message printed.');
   }
 };
+
+// This exports the symbol to ensure it will be present after compiler renaming
+goog.exportSymbol('rf.greeter.greet', rf.greeter.greet);
