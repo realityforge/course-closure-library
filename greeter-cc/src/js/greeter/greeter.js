@@ -6,7 +6,7 @@ goog.require('rf.greeter.greeting');
 /**
  * Replace contents of element with specified id wit a greeting.
  *
- * @param {String} id the id of the dom element.
+ * @param {string} id the id of the dom element.
  * @return {undefined}
  */
 rf.greeter.greet = function(id) {
