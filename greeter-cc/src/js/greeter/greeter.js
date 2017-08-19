@@ -8,6 +8,7 @@ goog.require('rf.greeter.greeting');
  *
  * @param {string} id the id of the dom element.
  * @return {undefined}
+ * @export
  */
 rf.greeter.greet = function(id) {
   var element = goog.dom.getElement(id);
@@ -18,4 +19,6 @@ rf.greeter.greet = function(id) {
 };
 
 // This exports the symbol to ensure it will be present after compiler renaming
-goog.exportSymbol('rf.greeter.greet', rf.greeter.greet);
+// however it has been commented out and replaced with @export jsdoc annotation
+// above combined with the compiler option "--generate_exports"
+//goog.exportSymbol('rf.greeter.greet', rf.greeter.greet);

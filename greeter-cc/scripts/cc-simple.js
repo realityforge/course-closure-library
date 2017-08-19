@@ -15,6 +15,7 @@ let command = CALC_DEPS_CMD +
               ' --path ' + INPUT_PATH +
               ' --input ' + INPUT_PATH + '/' + INPUT_FILE +
               ' --compiler_flags "--compilation_level=SIMPLE_OPTIMIZATIONS"' +
+              ' --compiler_flags "--generate_exports"' +
               ' --output_mode compiled' +
               ' > ' + OUTPUT_PATH + '/' + OUTPUT_FILE;
 
