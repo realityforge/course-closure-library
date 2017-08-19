@@ -18,6 +18,7 @@ let command = CALC_DEPS_CMD +
               // Have to wrap the compiled output in a Immediately-Invoked Function Expression so the
               // compiled symbols do not collide with existing symbols
               ' --compiler_flags "--output_wrapper=\\"(function(){%output%})();\\""' +
+              // This next flag means the @export jsdoc annotation works
               ' --compiler_flags "--generate_exports"' +
               ' --output_mode compiled' +
               ' > ' + OUTPUT_PATH + '/' + OUTPUT_FILE;
