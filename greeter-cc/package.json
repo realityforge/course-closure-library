@@ -4,6 +4,7 @@
   "license": "MIT",
   "scripts": {
     "cc-simple": "node ./scripts/cc-simple.js src/js/greeter greeter.js public/assets/js greeter.js",
+    "cc-advanced": "node ./scripts/cc-advanced.js src/js/greeter greeter.js public/assets/js greeter.js",
     "depswriter": "node ./scripts/depsgen.js greeter"
   },
   "dependencies": {
