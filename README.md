@@ -1,4 +1,4 @@
-# Coursework for "Closure Library: Build Complex JavaScript Applications"
+# Coursework for "Closure Library"
 
 This contains the projects used for the course [Closure Library: Build Complex JavaScript Applications](https://www.udemy.com/closure-library/).
 
