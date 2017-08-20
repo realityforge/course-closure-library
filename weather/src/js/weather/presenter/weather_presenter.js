@@ -4,6 +4,7 @@ goog.require('goog.events');
 goog.require('rf.weather.model.WeatherModel');
 goog.require('rf.weather.view.WeatherView');
 goog.require('rf.weather.service.WeatherService');
+goog.require('rf.weather.service.StorageService');
 
 /**
  * @constructor
