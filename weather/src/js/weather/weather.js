@@ -14,6 +14,11 @@ goog.require('rf.weather.presenter.WeatherPresenter');
 rf.weather.init = function(selector) {
   var element = document.querySelector(selector);
   if (element) {
-    // Setup application here
+    var model = new rf.weather.model.WeatherModel();
+    var view = new rf.weather.view.WeatherView();
+    // Initial render
+    view.render(element);
+
+    new rf.weather.presenter.WeatherPresenter(model, view);
   }
 };
