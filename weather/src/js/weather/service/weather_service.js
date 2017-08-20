@@ -56,7 +56,7 @@ rf.weather.service.WeatherService.prototype.onSuccessResponse_ = function(event)
       break;
     case 200:
       data = {
-        'location': response['name'],
+        'location': response['name'] + ', ' + response['sys']['country'],
         'description': response['weather'][0]['description'],
         'temperature': response['main']['temp']
       };

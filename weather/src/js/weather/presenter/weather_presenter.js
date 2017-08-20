@@ -32,7 +32,7 @@ rf.weather.presenter.WeatherPresenter = function(model, view) {
     false,
     this);
 
-  this.service_.updateWeather(this.storage_.getLocation() || 'Melbourne, Victoria', this.model_);
+  this.service_.updateWeather(this.storage_.getLocation() || 'Melbourne, AU', this.model_);
 };
 
 /**
