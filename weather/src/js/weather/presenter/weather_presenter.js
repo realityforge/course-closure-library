@@ -23,8 +23,13 @@ rf.weather.presenter.WeatherPresenter = function(model, view) {
 
   goog.events.listen(this.model_, rf.weather.model.WeatherModel.EventType.UPDATE, this.onModelUpdate_, false, this);
   goog.events.listen(this.view_, rf.weather.view.WeatherView.EventType.TOGGLE_UNIT, this.onToggleUnit_, false, this);
+  goog.events.listen(this.view_,
+    rf.weather.view.WeatherView.EventType.UPDATE_DATA,
+    this.onLocationUpdated_,
+    false,
+    this);
 
-  this.service_.updateWeather('Melbourne', this.model_)
+  this.service_.updateWeather('Melbourne', this.model_);
 };
 
 /**
@@ -44,4 +49,10 @@ rf.weather.presenter.WeatherPresenter.prototype.onModelUpdate_ = function() {
   this.view_.setLocation(this.model_.getLocation());
   this.view_.setDescription(this.model_.getDescription());
   this.view_.setTemperature(this.model_.getTemperature(this.unit_));
+};
+
+/** @private */
+rf.weather.presenter.WeatherPresenter.prototype.onLocationUpdated_ = function(e) {
+  var location = e.target;
+  this.service_.updateWeather(location, this.model_);
 };

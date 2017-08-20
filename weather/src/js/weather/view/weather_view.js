@@ -1,5 +1,6 @@
 goog.provide('rf.weather.view.WeatherView');
 
+goog.require('goog.events.KeyHandler');
 goog.require('goog.ui.Component');
 goog.require('goog.dom');
 
@@ -17,6 +18,10 @@ rf.weather.view.WeatherView = function() {
   this.descriptionElement_ = null;
   /** @private {null|Element} */
   this.temperatureElement_ = null;
+  /** @private {null|Element} */
+  this.locationInputElement_ = null;
+  /** @private {null|goog.events.KeyHandler} */
+  this.keyHandler_ = null;
 };
 
 goog.inherits(rf.weather.view.WeatherView, goog.ui.Component);
@@ -26,6 +31,8 @@ rf.weather.view.WeatherView.prototype.createDom = function() {
   this.locationElement_ = goog.dom.createDom('div', { 'class': 'location' });
   this.descriptionElement_ = goog.dom.createDom('div', { 'class': 'description' });
   this.temperatureElement_ = goog.dom.createDom('div', { 'class': 'temperature' });
+  this.locationInputElement_ = goog.dom.createDom('input', { 'type': 'text' });
+  this.keyHandler_ = new goog.events.KeyHandler(this.locationInputElement_);
 
   var element =
     goog.dom.createDom('div',
@@ -43,6 +50,39 @@ rf.weather.view.WeatherView.prototype.enterDocument = function() {
 
   //enterDocument is called after createDom so elements exist
   goog.events.listen(this.temperatureElement_, goog.events.EventType.CLICK, this.onTemperatureClick_, false, this);
+  goog.events.listen(this.locationElement_, goog.events.EventType.CLICK, this.onLocationClick_, false, this);
+  goog.events.listen(this.keyHandler_, goog.events.KeyHandler.EventType.KEY, this.onLocationInput_, false, this);
+  goog.events.listen(this.locationInputElement_, goog.events.EventType.BLUR, this.onLocationInputBlur, false, this);
+};
+
+/** @private */
+rf.weather.view.WeatherView.prototype.onLocationInput_ = function(e) {
+  if (e.keyCode === 27) {
+    this.locationInputElement_.blur();
+  }
+
+  if (e.keyCode === 13) {
+    var event =
+      new goog.events.Event(rf.weather.view.WeatherView.EventType.UPDATE_DATA, this.locationInputElement_.value);
+    this.dispatchEvent(event);
+    this.locationInputElement_.blur();
+  }
+};
+
+/** @private */
+rf.weather.view.WeatherView.prototype.onLocationInputBlur = function() {
+  this.getElement().removeChild(this.locationInputElement_);
+  this.getElement().insertBefore(this.locationElement_, this.descriptionElement_);
+};
+
+/** @private */
+rf.weather.view.WeatherView.prototype.onLocationClick_ = function() {
+  this.locationInputElement_.value = this.locationElement_.innerHTML;
+
+  this.getElement().removeChild(this.locationElement_);
+  this.getElement().insertBefore(this.locationInputElement_, this.descriptionElement_);
+
+  this.locationInputElement_.focus();
 };
 
 /**
@@ -89,5 +129,6 @@ rf.weather.view.WeatherView.prototype.setTemperature = function(temperature) {
  * @enum {string}
  */
 rf.weather.view.WeatherView.EventType = {
-  TOGGLE_UNIT: 'view.toggle_unit'
+  TOGGLE_UNIT: 'view.toggle_unit',
+  UPDATE_DATA: 'view.update_data'
 };
