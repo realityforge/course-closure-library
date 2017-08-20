@@ -15,10 +15,23 @@ rf.weather.presenter.WeatherPresenter = function(model, view) {
   this.model_ = model;
   /** @private {rf.weather.view.WeatherView} */
   this.view_ = view;
+  /** @private {string} */
+  this.unit_ = rf.weather.model.WeatherModel.Unit.C;
 
   goog.events.listen(this.model_, rf.weather.model.WeatherModel.EventType.UPDATE, this.onModelUpdate_, false, this);
+  goog.events.listen(this.view_, rf.weather.view.WeatherView.EventType.TOGGLE_UNIT, this.onToggleUnit_, false, this);
 
-  this.model_.update({ 'location': 'Melbourne', 'description': 'Cold', 'temperature': 6 });
+  this.model_.update({ 'location': 'Melbourne', 'description': 'Cold', 'temperature': 72 });
+};
+
+/**
+ * @private
+ */
+rf.weather.presenter.WeatherPresenter.prototype.onToggleUnit_ = function() {
+  this.unit_ = rf.weather.model.WeatherModel.Unit.C === this.unit_ ?
+               rf.weather.model.WeatherModel.Unit.F :
+               rf.weather.model.WeatherModel.Unit.C;
+  this.view_.setTemperature(this.model_.getTemperature(this.unit_));
 };
 
 /**
@@ -27,5 +40,5 @@ rf.weather.presenter.WeatherPresenter = function(model, view) {
 rf.weather.presenter.WeatherPresenter.prototype.onModelUpdate_ = function() {
   this.view_.setLocation(this.model_.getLocation());
   this.view_.setDescription(this.model_.getDescription());
-  this.view_.setTemperature(this.model_.getTemperature());
+  this.view_.setTemperature(this.model_.getTemperature(this.unit_));
 };

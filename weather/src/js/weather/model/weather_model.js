@@ -54,10 +54,16 @@ rf.weather.model.WeatherModel.prototype.getDescription = function() {
 };
 
 /**
+ * @param {string=} unit
  * @returns {number}
  */
-rf.weather.model.WeatherModel.prototype.getTemperature = function() {
-  return this.temperature_;
+rf.weather.model.WeatherModel.prototype.getTemperature = function(unit) {
+  let temperature = this.temperature_;
+  if (temperature) {
+    temperature =
+      (unit === rf.weather.model.WeatherModel.Unit.C) ? ((temperature - 32) * 5 / 9).toFixed(0) : temperature;
+  }
+  return temperature;
 };
 
 /**
@@ -65,4 +71,12 @@ rf.weather.model.WeatherModel.prototype.getTemperature = function() {
  */
 rf.weather.model.WeatherModel.EventType = {
   UPDATE: 'model.update'
+};
+
+/**
+ * @enum {String}
+ */
+rf.weather.model.WeatherModel.Unit = {
+  F: 'F',
+  C: 'C'
 };

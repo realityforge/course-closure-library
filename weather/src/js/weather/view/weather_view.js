@@ -36,6 +36,22 @@ rf.weather.view.WeatherView.prototype.createDom = function() {
   this.setElementInternal(element);
 };
 
+/** @inheritDoc */
+rf.weather.view.WeatherView.prototype.enterDocument = function() {
+  //Call super method
+  goog.base(this, 'enterDocument');
+
+  //enterDocument is called after createDom so elements exist
+  goog.events.listen(this.temperatureElement_, goog.events.EventType.CLICK, this.onTemperatureClick_, false, this);
+};
+
+/**
+ * @private
+ */
+rf.weather.view.WeatherView.prototype.onTemperatureClick_ = function() {
+  this.dispatchEvent(rf.weather.view.WeatherView.EventType.TOGGLE_UNIT);
+};
+
 /**
  * @param {string} location
  * @returns {rf.weather.view.WeatherView}
@@ -64,4 +80,11 @@ rf.weather.view.WeatherView.prototype.setTemperature = function(temperature) {
   if (this.temperatureElement_) {
     this.temperatureElement_.innerHTML = temperature;
   }
+};
+
+/**
+ * @enum {string}
+ */
+rf.weather.view.WeatherView.EventType = {
+  TOGGLE_UNIT: 'view.toggle_unit'
 };
