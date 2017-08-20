@@ -22,7 +22,7 @@ rf.weather.view.WeatherView = function() {
 goog.inherits(rf.weather.view.WeatherView, goog.ui.Component);
 
 /** @inheritDoc */
-rf.weather.view.WeatherView.prototype.render = function() {
+rf.weather.view.WeatherView.prototype.createDom = function() {
   this.locationElement_ = goog.dom.createDom('div', { 'class': 'location' });
   this.descriptionElement_ = goog.dom.createDom('div', { 'class': 'description' });
   this.temperatureElement_ = goog.dom.createDom('div', { 'class': 'temperature' });
