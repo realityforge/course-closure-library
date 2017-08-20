@@ -31,6 +31,8 @@ rf.weather.service.StorageService.prototype.setLocation = function(value) {
  */
 rf.weather.service.StorageService.prototype.getLocation = function() {
   if (this.storage_) {
-    return this.storage_.get('location');
+    return /** @type {string|null} */ (this.storage_.get('location'));
+  } else {
+    return null;
   }
 };
