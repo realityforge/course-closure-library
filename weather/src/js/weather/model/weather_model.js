@@ -12,11 +12,11 @@ rf.weather.model.WeatherModel = function() {
   // Chain to parent constructor
   goog.base(this);
 
-  /** @private {string} */
+  /** @private {null|string} */
   this.location_ = null;
-  /** @private {string} */
+  /** @private {null|string} */
   this.description_ = null;
-  /** @private {Number} */
+  /** @private {null|number} */
   this.temperature_ = null;
 };
 
@@ -26,28 +26,31 @@ goog.inherits(rf.weather.model.WeatherModel, goog.events.EventTarget);
  * @param {!Object} data
  */
 rf.weather.model.WeatherModel.prototype.update = function(data) {
-  if (data['location']) {
-    this.location_ = data['location'];
+  let location = data['location'];
+  if (location) {
+    this.location_ = location;
   }
-  if (data['description']) {
-    this.description_ = data['description'];
+  let description = data['description'];
+  if (description) {
+    this.description_ = description;
   }
-  if (data['temperature']) {
-    this.temperature_ = data['temperature'];
+  let temperature = data['temperature'];
+  if (temperature) {
+    this.temperature_ = temperature;
   }
 
   this.dispatchEvent(rf.weather.model.WeatherModel.EventType.UPDATE);
 };
 
 /**
- * @returns {string}
+ * @returns {null|string}
  */
 rf.weather.model.WeatherModel.prototype.getLocation = function() {
   return this.location_;
 };
 
 /**
- * @returns {string}
+ * @returns {null|string}
  */
 rf.weather.model.WeatherModel.prototype.getDescription = function() {
   return this.description_;
@@ -55,13 +58,15 @@ rf.weather.model.WeatherModel.prototype.getDescription = function() {
 
 /**
  * @param {string=} unit
- * @returns {number}
+ * @returns {null|number}
  */
 rf.weather.model.WeatherModel.prototype.getTemperature = function(unit) {
-  let temperature = this.temperature_;
+  var /** @type {null|number} */ temperature = this.temperature_;
   if (temperature) {
     temperature =
-      (unit === rf.weather.model.WeatherModel.Unit.C) ? ((temperature - 32) * 5 / 9).toFixed(0) : temperature;
+      (unit === rf.weather.model.WeatherModel.Unit.C) ?
+      Number.parseInt(((temperature - 32) * 5 / 9).toFixed(0), 10) :
+      temperature;
   }
   return temperature;
 };
@@ -74,7 +79,7 @@ rf.weather.model.WeatherModel.EventType = {
 };
 
 /**
- * @enum {String}
+ * @enum {string}
  */
 rf.weather.model.WeatherModel.Unit = {
   F: 'F',

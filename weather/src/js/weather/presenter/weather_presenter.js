@@ -3,6 +3,7 @@ goog.provide('rf.weather.presenter.WeatherPresenter');
 goog.require('goog.events');
 goog.require('rf.weather.model.WeatherModel');
 goog.require('rf.weather.view.WeatherView');
+goog.require('rf.weather.service.WeatherService');
 
 /**
  * @constructor
@@ -17,11 +18,13 @@ rf.weather.presenter.WeatherPresenter = function(model, view) {
   this.view_ = view;
   /** @private {string} */
   this.unit_ = rf.weather.model.WeatherModel.Unit.C;
+  /** @private {rf.weather.service.WeatherService} */
+  this.service_ = new rf.weather.service.WeatherService('5834dbb3197d5d03e4e560aef3556ca2');
 
   goog.events.listen(this.model_, rf.weather.model.WeatherModel.EventType.UPDATE, this.onModelUpdate_, false, this);
   goog.events.listen(this.view_, rf.weather.view.WeatherView.EventType.TOGGLE_UNIT, this.onToggleUnit_, false, this);
 
-  this.model_.update({ 'location': 'Melbourne', 'description': 'Cold', 'temperature': 72 });
+  this.service_.updateWeather('Melbourne', this.model_)
 };
 
 /**

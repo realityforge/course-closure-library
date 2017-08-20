@@ -53,33 +53,36 @@ rf.weather.view.WeatherView.prototype.onTemperatureClick_ = function() {
 };
 
 /**
- * @param {string} location
+ * @param {null|string} location
  * @returns {rf.weather.view.WeatherView}
  */
 rf.weather.view.WeatherView.prototype.setLocation = function(location) {
   if (this.locationElement_) {
     this.locationElement_.innerHTML = location;
   }
+  return this;
 };
 
 /**
- * @param {string} description
+ * @param {null|string} description
  * @returns {rf.weather.view.WeatherView}
  */
 rf.weather.view.WeatherView.prototype.setDescription = function(description) {
   if (this.descriptionElement_) {
     this.descriptionElement_.innerHTML = description;
   }
+  return this;
 };
 
 /**
- * @param {number} temperature
+ * @param {null|number} temperature
  * @returns {rf.weather.view.WeatherView}
  */
 rf.weather.view.WeatherView.prototype.setTemperature = function(temperature) {
   if (this.temperatureElement_) {
     this.temperatureElement_.innerHTML = temperature;
   }
+  return this;
 };
 
 /**
